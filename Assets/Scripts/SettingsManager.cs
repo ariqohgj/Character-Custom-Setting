@@ -19,6 +19,18 @@ public class SettingsManager : MonoBehaviour
     private List<ItemSliderData> listData = new List<ItemSliderData>();
     // Start is called before the first frame update
 
+    [System.Serializable]
+    public class minmaxData
+    {
+        public string shpekey;
+        public int id;
+        public float min;
+        public float max;
+        public bool shapeSulit = false;
+    }
+
+    public List<minmaxData> DataMinAndMax;
+
     private void Awake()
     {
         // Pastikan hanya ada satu instansi yang bertahan
@@ -47,7 +59,7 @@ public class SettingsManager : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider.gameObject == skinnedMesh.gameObject)
+                if (hit.collider.gameObject == parentSkin.gameObject)
                 {
                     isRotating = true;
                     lastMousePosition = Input.mousePosition;
@@ -71,12 +83,12 @@ public class SettingsManager : MonoBehaviour
             float rotationY = -mouseDelta.x * rotationSpeed;
 
             // Mengunci rotasi sumbu Z ke 0
-            Vector3 currentRotation = skinnedMesh.transform.localEulerAngles;
+            Vector3 currentRotation = parentSkin.transform.localEulerAngles;
             currentRotation.z = 0;
 
             // Mengubah rotasi objek
-            skinnedMesh.transform.localEulerAngles = currentRotation;
-            skinnedMesh.transform.Rotate(Vector3.up, rotationY, Space.World);
+            parentSkin.transform.localEulerAngles = currentRotation;
+            parentSkin.transform.Rotate(Vector3.up, rotationY, Space.World);
             //skinnedMesh.transform.Rotate(Vector3.right, rotationX, Space.World);
         }
 
@@ -91,11 +103,23 @@ public class SettingsManager : MonoBehaviour
             for (int i = 0; i < skinnedMesh.sharedMesh.blendShapeCount; i++)
             {
                 ItemSliderData data = Instantiate(itemSliderData, parent);
-                data.id_data = skinnedMesh.sharedMesh.GetBlendShapeIndex(skinnedMesh.sharedMesh.GetBlendShapeName(i));
+                data.id_data_one = skinnedMesh.sharedMesh.GetBlendShapeIndex(skinnedMesh.sharedMesh.GetBlendShapeName(i));
                 data.nameText.text = skinnedMesh.sharedMesh.GetBlendShapeName(i);
                 data.slider.value = skinnedMesh.GetBlendShapeWeight(i);
                 data.inputValue.text = skinnedMesh.GetBlendShapeWeight(i).ToString();
                 data.slider.onValueChanged.AddListener(data.ChangeValueBySlider);
+
+                if (DataMinAndMax[i].shapeSulit)
+                {
+                    data.slider.minValue = DataMinAndMax[i].min / 100;
+                    data.slider.maxValue = DataMinAndMax[i].max / 100;
+                    //data.slider.value = 30;
+                }
+                else
+                {
+                    data.slider.minValue = DataMinAndMax[i].min;
+                    data.slider.maxValue = DataMinAndMax[i].max;
+                }
             }
         }
 

@@ -4,9 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+
 public class ItemSliderData : MonoBehaviour
 {
-    public int id_data;
+    [Header("SLIDER TYPE")]
+    public SliderType sliderType;
+    public enum SliderType
+    {
+        SINGLE,
+        DUO,
+        TRIPLE
+    }
+
+    public int id_data_one;
+    public int id_data_two;
+    public int id_data_three;
     public TextMeshProUGUI nameText;
     [SerializeField] public Slider slider;
     public TMP_InputField inputValue;
@@ -15,7 +27,7 @@ public class ItemSliderData : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -25,12 +37,12 @@ public class ItemSliderData : MonoBehaviour
     }
     public void ChangeValueByTextInput()
     {
-        SettingsManager.instance.skinnedMesh.SetBlendShapeWeight(id_data, int.Parse(inputValue.text));
+        SettingsManager.instance.skinnedMesh.SetBlendShapeWeight(id_data_one, int.Parse(inputValue.text));
         slider.value = float.Parse(inputValue.text) / 100;
     }
     public void ChangeValueBySlider(float value)
     {
-        SettingsManager.instance.skinnedMesh.SetBlendShapeWeight(id_data, value *100);
+        SettingsManager.instance.skinnedMesh.SetBlendShapeWeight(id_data_one, value *100);
         float valuebaru = value * 100;
         inputValue.text = valuebaru.ToString("0");
     }
