@@ -4,7 +4,7 @@
 /// https://www.opsive.com
 /// ---------------------------------------------
 
-namespace Opsive.UltimateCharacterController.Demo
+namespace Opsive.UltimateCharacterController.Demo.Object
 {
     using Opsive.Shared.Game;
     using Opsive.Shared.StateSystem;
@@ -74,6 +74,7 @@ namespace Opsive.UltimateCharacterController.Demo
             if (m_Character == null) {
 #if UNITY_2023_1_OR_NEWER
                 var demoManager = Object.FindFirstObjectByType<DemoManager>()?.Character;
+                
 #else
                 m_Character = FindObjectOfType<DemoManager>()?.Character;
 #endif

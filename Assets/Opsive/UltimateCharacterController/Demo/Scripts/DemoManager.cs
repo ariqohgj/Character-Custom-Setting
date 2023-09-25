@@ -336,7 +336,7 @@ namespace Opsive.UltimateCharacterController.Demo
 
             // Rhea should follow the spawned character.
 #if UNITY_2023_1_OR_NEWER
-            var followAgent = UnityEngine.Object.FindFirstObjectByType<Demo.AI.FollowAgent>(true);
+            var followAgent = UnityEngine.Object.FindFirstObjectByType<Demo.AI.FollowAgent>();
 #else
             var followAgent = UnityEngine.Object.FindObjectOfType<Demo.AI.FollowAgent>(true);
 #endif

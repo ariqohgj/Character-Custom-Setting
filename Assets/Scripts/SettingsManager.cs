@@ -27,6 +27,17 @@ public class SettingsManager : MonoBehaviour
         public float min;
         public float max;
         public bool shapeSulit = false;
+        public List<BarrierData> barrierDatas = new List<BarrierData>();
+    }
+
+    [System.Serializable]
+    public class BarrierData
+    {
+        public string bodyName;
+        public float batasAtas;
+        public float batasBawah;
+        public float normalValue;
+
     }
 
     public List<minmaxData> DataMinAndMax;

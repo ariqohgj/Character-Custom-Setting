@@ -366,94 +366,128 @@ MonoBehaviour:
   DataMinAndMax:
   - shpekey: Body_Type
     id: 0
-    min: 0
-    max: 1
+    min: -0.1
+    max: 1.1
     shapeSulit: 0
+    barrierDatas:
+    - bodyName: S
+      batasAtas: 0.1
+      batasBawah: -0.1
+      normalValue: 0
+    - bodyName: N
+      batasAtas: 0.25
+      batasBawah: 0.15
+      normalValue: 0.2
+    - bodyName: F
+      batasAtas: 0.4
+      batasBawah: 0.27
+      normalValue: 0.33333
+    - bodyName: O
+      batasAtas: 1.1
+      batasBawah: 0.9
+      normalValue: 1
   - shpekey: Head_Scale
     id: 1
     min: -1.5
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Neck_Height
     id: 2
     min: -4
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Shoulder_width
     id: 3
     min: -0.8333333
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Arm_Upper_Scale
     id: 4
     min: -1
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Arm_Length
     id: 5
     min: -2
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Arm_Lower_Scale
     id: 6
     min: -1
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Arm_Lower_Length
     id: 7
     min: -1.333333
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Chest_Scale
     id: 8
     min: -2.5
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Chest_Height
     id: 9
     min: -2
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Breast_Scale
     id: 10
     min: 0
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Abdoment_Scale
     id: 11
     min: -2
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: HipAndLove_Scale
     id: 12
     min: -1
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Glute_Scale
     id: 13
     min: -0.3
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Leg_Upper_Scale
     id: 14
     min: -1
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Leg_Upper_Length
     id: 15
-    min: 0
-    max: 100
+    min: -20
+    max: 115
     shapeSulit: 1
+    barrierDatas: []
   - shpekey: Leg_Lower_Scale
     id: 16
     min: 0.1
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Leg_Lower_Length
     id: 17
-    min: 0
-    max: 100
+    min: -20
+    max: 115
     shapeSulit: 1
+    barrierDatas: []
 --- !u!1 &322327980
 GameObject:
   m_ObjectHideFlags: 0
@@ -1835,91 +1869,109 @@ MonoBehaviour:
     min: 0
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Head_Scale
     id: 1
     min: -1.5
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Neck_Height
     id: 2
     min: -4
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Shoulder_width
     id: 3
     min: -0.8333333
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Arm_Upper_Scale
     id: 4
     min: -1
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Arm_Length
     id: 5
     min: -2
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Arm_Lower_Scale
     id: 6
     min: -1
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Arm_Lower_Length
     id: 7
     min: -1.333333
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Chest_Scale
     id: 8
     min: -2.5
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Chest_Height
     id: 9
     min: -6
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Breast_Scale
     id: 10
     min: 0
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Abdoment_Scale
     id: 11
     min: -2
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: HipAndLove_Scale
     id: 12
     min: -1
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Glute_Scale
     id: 13
     min: -0.3
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Leg_Upper_Scale
     id: 14
     min: -1
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Leg_Upper_Length
     id: 15
     min: -75
     max: 30
     shapeSulit: 1
+    barrierDatas: []
   - shpekey: Leg_Lower_Scale
     id: 16
     min: 0.1
     max: 1
     shapeSulit: 0
+    barrierDatas: []
   - shpekey: Leg_Lower_Length
     id: 17
     min: -75
     max: 30
     shapeSulit: 1
+    barrierDatas: []
 --- !u!4 &1629730020
 Transform:
   m_ObjectHideFlags: 0
