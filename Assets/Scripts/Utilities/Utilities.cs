@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System;
 
-namespace CindaAlterLife
+namespace Cinda.AlterLife
 {
 
     public class Utilities

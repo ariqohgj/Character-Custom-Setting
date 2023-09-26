@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using Cinda.AlterLife;
 
 [CustomEditor(typeof(ItemSliderData)), CanEditMultipleObjects]
 public class ItemSliderEditor : Editor
@@ -20,8 +21,6 @@ public class ItemSliderEditor : Editor
         // Setup the SerializedProperties
         SliderType = serializedObject.FindProperty("sliderType");
         idData_One = serializedObject.FindProperty("id_data_one");
-        idData_Two = serializedObject.FindProperty("id_data_two");
-        idData_Three = serializedObject.FindProperty("id_data_three");
         nametext = serializedObject.FindProperty("nameText");
         slider = serializedObject.FindProperty("slider");
         inputvalue = serializedObject.FindProperty("inputValue");
@@ -37,7 +36,7 @@ public class ItemSliderEditor : Editor
 
         switch (st)
         {
-            case ItemSliderData.SliderType.SINGLE:
+            case ItemSliderData.SliderType.Upper:
                 EditorGUILayout.LabelField("SLIDER SETTING", EditorStyles.boldLabel);
                 EditorGUILayout.PropertyField(idData_One, new GUIContent("id_data_one"));
                 EditorGUILayout.PropertyField(nametext, new GUIContent("nameText"));
@@ -46,18 +45,18 @@ public class ItemSliderEditor : Editor
 
                 break;
 
-            case ItemSliderData.SliderType.DUO:
+            case ItemSliderData.SliderType.Lower:
                 EditorGUILayout.LabelField("SLIDER SETTING", EditorStyles.boldLabel);
-                EditorGUILayout.PropertyField(idData_Two,new GUIContent("id_data_two"));
+                EditorGUILayout.PropertyField(idData_One, new GUIContent("id_data_one"));
                 EditorGUILayout.PropertyField(nametext, new GUIContent("nameText"));
                 EditorGUILayout.PropertyField(slider, new GUIContent("slider"));
                 EditorGUILayout.PropertyField(inputvalue, new GUIContent("inputValue"));
 
                 break;
 
-            case ItemSliderData.SliderType.TRIPLE:
+            case ItemSliderData.SliderType.None:
                 EditorGUILayout.LabelField("SLIDER SETTING", EditorStyles.boldLabel);
-                EditorGUILayout.PropertyField(idData_Three,new GUIContent("id_data_three"));
+                EditorGUILayout.PropertyField(idData_One, new GUIContent("id_data_one"));
                 EditorGUILayout.PropertyField(nametext, new GUIContent("nameText"));
                 EditorGUILayout.PropertyField(slider, new GUIContent("slider"));
                 EditorGUILayout.PropertyField(inputvalue, new GUIContent("inputValue"));
