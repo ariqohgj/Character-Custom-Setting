@@ -732,6 +732,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
+    Android: FIRST_PERSON_CONTROLLER;THIRD_PERSON_CONTROLLER;TEXTMESH_PRO_PRESENT
     Standalone: FIRST_PERSON_CONTROLLER;THIRD_PERSON_CONTROLLER;TEXTMESH_PRO_PRESENT
   additionalCompilerArguments: {}
   platformArchitecture: {}
