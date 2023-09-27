@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Cinemachine;
+using Unity.VisualScripting;
 
 namespace Cinda.AlterLife
 {
@@ -12,20 +13,29 @@ namespace Cinda.AlterLife
         public static SettingsManager instance;
 
         public SkinnedMeshRenderer skinnedMesh;
+        public SkinnedMeshRenderer skinnedMeshTop;
+        public SkinnedMeshRenderer skinnedMeshBottom;
+
+
         public ItemSliderData itemSliderData;
         public RectTransform parent;
 
         public float rotationSpeed = 2.0f;
         private Vector3 lastMousePosition;
         public GameObject parentSkin;
-        private bool isRotating = false;
+        public bool isRotating = false;
         private List<ItemSliderData> listData = new List<ItemSliderData>();
+        public EventSystem ehe;
+
         // Start is called before the first frame update
 
         [Header("CAMERA WORKS")]
         public CinemachineVirtualCamera CAM_1;
         public CinemachineVirtualCamera CAM_2;
         public CinemachineVirtualCamera CAM_3;
+
+        [Header("SCALER")]
+        public GameObject scalerObj;
 
         #region ENUM
         public enum bodyType
@@ -42,9 +52,18 @@ namespace Cinda.AlterLife
             LOWER_BODY,
             NONE
         }
+
+        public enum TinggiType
+        {
+            T0,
+            T1,
+            T2,
+            T3
+        }
         #endregion
 
         public bodyType body;
+        public TinggiType tinggiType;
 
         [System.Serializable]
         public class minmaxData
@@ -58,6 +77,8 @@ namespace Cinda.AlterLife
             public float min;
             public float max;
             public bool shapeSulit = false;
+            public bool withCloth = false;
+            public List<float> defaultValue = new();
             public List<BarrierData> barrierDatas = new List<BarrierData>();
         }
 
@@ -94,12 +115,13 @@ namespace Cinda.AlterLife
         // Update is called once per frame
         void Update()
         {
+
             if (Input.GetMouseButtonDown(0))
             {
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-                if (Physics.Raycast(ray, out hit))
+                bool isOverUI = UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();
+                if (Physics.Raycast(ray, out hit) && !isOverUI)
                 {
                     if (hit.collider.gameObject == parentSkin.gameObject)
                     {
@@ -147,14 +169,51 @@ namespace Cinda.AlterLife
                     ItemSliderData data = Instantiate(itemSliderData, parent);
                     data.id_data_one = skinnedMesh.sharedMesh.GetBlendShapeIndex(skinnedMesh.sharedMesh.GetBlendShapeName(i));
                     data.nameText.text = skinnedMesh.sharedMesh.GetBlendShapeName(i);
-                    data.slider.value = skinnedMesh.GetBlendShapeWeight(i);
+                    data.min = DataMinAndMax[i].min;
+                    data.max = DataMinAndMax[i].max;
+
+                    //data.slider.value = DataMinAndMax[i].defaultValue;
                     //data.inputValue.text = skinnedMesh.GetBlendShapeWeight(i).ToString();
                     data.slider.onValueChanged.AddListener(data.ChangeValueBySlider);
                     data.gameObject.SetActive(true);
                     data.sliderType = (ItemSliderData.SliderType)DataMinAndMax[i].CATEGORY_SETTING;
+                    data.slider.onValueChanged.AddListener(data.ChangeValueBySlider);
 
+                    if (i == 1 || i == 2 || i ==9)
+                    {
+                        data.gameObject.SetActive(false);
+                        continue;
+                    }
+
+                    //setting default value
+                    if (DataMinAndMax[i].defaultValue.Count > 0)
+                    {
+                        switch (tinggiType)
+                        {
+                            case TinggiType.T0:
+                                data.slider.value = DataMinAndMax[i].defaultValue[0];
+                                break;
+                            case TinggiType.T1:
+                                data.slider.value = DataMinAndMax[i].defaultValue[1];
+                                break;
+                            case TinggiType.T2:
+                                data.slider.value = DataMinAndMax[i].defaultValue[2];
+                                break;
+                            case TinggiType.T3:
+                                data.slider.value = DataMinAndMax[i].defaultValue[3];
+                                break;
+                        }
+                    }
+                    else
+                    {
+   
+                        data.slider.value = skinnedMesh.GetBlendShapeWeight(i);
+                    }
+
+                    // filtering yang punya batas atas dan batas bawah
                     if (DataMinAndMax[i].barrierDatas.Count > 0)
                     {
+                        // Filtering untuk kaki
                         if (DataMinAndMax[i].shapeSulit)
                         {
                             data.slider.minValue = DataMinAndMax[i].barrierDatas[((int)body)].batasBawah / 100;
@@ -168,6 +227,8 @@ namespace Cinda.AlterLife
                             data.slider.maxValue = DataMinAndMax[i].barrierDatas[((int)body)].batasAtas;
                             data.slider.value = DataMinAndMax[i].barrierDatas[((int)body)].normalValue;
                         }
+
+
                     }
                     else
                     {
@@ -175,7 +236,7 @@ namespace Cinda.AlterLife
                         {
                             data.slider.minValue = DataMinAndMax[i].min / 100;
                             data.slider.maxValue = DataMinAndMax[i].max / 100;
-                            //data.slider.value = 30;
+                            data.slider.value = DataMinAndMax[i].max / 100;
                         }
                         else
                         {
@@ -191,7 +252,7 @@ namespace Cinda.AlterLife
 
         public void Setting_Upper()
         {
-            for(int i = 0; i < listData.Count; i++)
+            for (int i = 0; i < listData.Count; i++)
             {
                 listData[i].gameObject.SetActive(true);
                 if (listData[i].sliderType != ItemSliderData.SliderType.Upper)
@@ -235,6 +296,20 @@ namespace Cinda.AlterLife
             CAM_1.Priority = 11;
             CAM_2.Priority = 10;
             CAM_3.Priority = 10;
+        }
+
+        public void HideUnhideScaler()
+        {
+            if (scalerObj.activeInHierarchy)
+            {
+                scalerObj.SetActive(false);
+                //isRotating = true;
+            }
+            else
+            {
+                scalerObj.SetActive(true);
+                //isRotating = false;
+            }
         }
     }
 }
