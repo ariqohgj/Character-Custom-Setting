@@ -18,14 +18,14 @@ namespace Cinda.AlterLife
         [SerializeField] private SkinnedMeshRenderer skinMeshRenderer;
 
 
-		[Header("Input")]
+        [Header("Input")]
 
         [Range(0.5f, 1.25f)]
-		public float thighInput = 1f;
-		[Range(0.5f, 1.25f)]
-		public float calfInput = 1f;
+        public float thighInput = 1f;
+        [Range(0.5f, 1.25f)]
+        public float calfInput = 1f;
 
-		[Header("Scalable Length Transform")]
+        [Header("Scalable Length Transform")]
         [SerializeField] private BoneData boneData;
         [SerializeField] private Transform root;
         [SerializeField] private Transform chest;
@@ -45,35 +45,35 @@ namespace Cinda.AlterLife
             await Initialize();
         }
 
-		private void LateUpdate()
-		{
+        private void LateUpdate()
+        {
             ScaleLegArmature();
-		}
+        }
 
-		[ContextMenu("Init")]
+        [ContextMenu("Init")]
         public async void Init() => await Initialize();
 
         [ContextMenu("Scale")]
         public void ScaleLegArmature()
         {
-			thighInput = thighInput <= 0 ? 0.01f : thighInput;
-			calfInput = calfInput <= 0 ? 0.01f : calfInput;
+            thighInput = thighInput <= 0 ? 0.01f : thighInput;
+            calfInput = calfInput <= 0 ? 0.01f : calfInput;
 
-			foreach (var item in LegsUpper)
-			{
-				item.localScale = new Vector3(1, thighInput, 1);
-			}
-			foreach (var item in LegsLower)
-			{
-				item.localScale = new Vector3(1, 1f / thighInput * calfInput, 1);
-			}
+            foreach (var item in LegsUpper)
+            {
+                item.localScale = new Vector3(1, thighInput, 1);
+            }
+            foreach (var item in LegsLower)
+            {
+                item.localScale = new Vector3(1, 1f / thighInput * calfInput, 1);
+            }
 
-			root.localScale = new Vector3(1, 1, root.localScale.z * (hip.localPosition.z - (footBase.transform.position.y - root.transform.position.y)) / hip.localPosition.z);
-			hip.localScale = new Vector3(1, (1f / root.localScale.z), 1);
-		}
+            root.localScale = new Vector3(1, 1, root.localScale.z * (hip.localPosition.z - (footBase.transform.position.y - root.transform.position.y)) / hip.localPosition.z);
+            hip.localScale = new Vector3(1, (1f / root.localScale.z), 1);
+        }
 
         #region Task / Awaitable
-		public async Awaitable Initialize()
+        public async Awaitable Initialize()
         {
             await InitiateData();
             await InitializeBone();
@@ -97,7 +97,7 @@ namespace Cinda.AlterLife
                 root = transform.Find(boneData.Root);
                 chest = transform.Find(boneData.Waist);
                 pelvis = transform.Find(boneData.Pelvis);
-                hip =  transform.Find(boneData.Hip);
+                hip = transform.Find(boneData.Hip);
 
                 ArmsUpper[0] = transform.Find(boneData.RightUpperArm);
                 ArmsUpper[1] = transform.Find(boneData.LeftUpperArm);
@@ -119,28 +119,14 @@ namespace Cinda.AlterLife
                 Debug.Log(e);
             }
 
-            if (footBase ==  null)
-            footBase = new("footBase");
+            if (footBase == null)
+                footBase = new("footBase");
 
             footBase.transform.localPosition = new Vector3(Foots[0].position.x, Foots[0].position.y, Foots[0].position.z);
             footBase.transform.SetParent(hip);
             //Scale();
             await Awaitable.WaitForSecondsAsync(0);
         }
-        #endregion
-
-#if UNITY_EDITOR
-		private void OnDrawGizmos()
-		{
-            if (footBase != null)
-            Gizmos.DrawSphere(footBase.transform.position, 0.01f);
-		}
-
-		private void OnValidate()
-		{
-			if (EditorApplication.isPlaying) return;
-            ScaleLegArmature();
-		}
-#endif
+		#endregion
 	}
 }

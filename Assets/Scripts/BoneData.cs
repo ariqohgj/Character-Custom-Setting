@@ -5,38 +5,55 @@ using UnityEngine;
 public class BoneData : ScriptableObject
 {
 	[Header("Base Body")]
-	[SerializeField] private string baseBodyName;
+	[SerializeField] private string baseBodyName = "Base_Body";
 
 	[Header("Armature Base")]
-	[SerializeField] private string armatureBase;
-	[SerializeField] private string armatureRoot;
-	[SerializeField] private string armatureHip;
+	[SerializeField] private string armatureBase = "Human";
+	[SerializeField] private string armatureRoot = "Base_BoneRoot";
+	[SerializeField] private string armatureHip = "Base_Hip";
 
 	[Header("Armature Upper Body")]
-	[SerializeField] private string armatureWaist;
-	[SerializeField] private string armatureSpine01;
-	[SerializeField] private string armatureSpine02;
-	[SerializeField] private string armatureRightClavicle; //Shoulder Right
-	[SerializeField] private string armatureLeftClavicle; //Shoulder Left
+	[SerializeField] private string armatureWaist = "Base_Waist";
+	[SerializeField] private string armatureSpine01 = "Base_Spine01";
+	[SerializeField] private string armatureSpine02 = "Base_Spine02";
+	[SerializeField] private string armatureRightClavicle = "Base_R_Clavicle"; //Shoulder Right
+	[SerializeField] private string armatureLeftClavicle = "Base_L_Clavicle"; //Shoulder Left
 
 	[Header("Armature Hand")]
-	[SerializeField] private string armatureRightUpperArm;
-	[SerializeField] private string armatureLeftUpperArm;
-	[SerializeField] private string armatureRightLowerArm;
-	[SerializeField] private string armatureLeftLowerArm;
+	[SerializeField] private string armatureRightUpperArm = "Base_R_Upperarm";
+	[SerializeField] private string armatureLeftUpperArm = "Base_L_Upperarm";
+	[SerializeField] private string armatureRightLowerArm = "Base_R_Forearm";
+	[SerializeField] private string armatureLeftLowerArm = "Base_L_Forearm";
 
 	[Header("Armature Lower Body")]
-	[SerializeField] private string armaturePelvis;
-	[SerializeField] private string armatureRightUpperLeg;
-	[SerializeField] private string armatureLeftUpperLeg;
-	[SerializeField] private string armatureRightLowerLeg;
-	[SerializeField] private string armatureLeftLowerLeg;
+	[SerializeField] private string armaturePelvis = "Base_Pelvis";
+	[SerializeField] private string armatureRightUpperLeg = "Base_R_Thigh";
+	[SerializeField] private string armatureLeftUpperLeg = "Base_L_Thigh";
+	[SerializeField] private string armatureRightLowerLeg = "Base_R_Calf";
+	[SerializeField] private string armatureLeftLowerLeg = "Base_L_Calf";
 
-	/// <summary>
+
+	[Header("Foot")]
+	[SerializeField] private string armatureRightFoot = "Base_R_Foot";
+	[SerializeField] private string armatureLeftFoot = "Base_L_Foot";
 	/// Get Base Body Name
 	/// </summary>
 	public string BaseBody
 		=> baseBodyName;
+
+	public string Root
+		=> Path.Combine(armatureBase, armatureRoot)
+		.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+
+	public string Hip
+	=> Path.Combine(armatureBase, armatureRoot, armatureHip)
+	.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+
+
+	
+	public string Pelvis
+		=> Path.Combine(armatureBase, armatureRoot, armatureHip, armaturePelvis)
+	.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
 
 	/// <summary>
 	/// Get Waist / Chest
@@ -98,6 +115,15 @@ public class BoneData : ScriptableObject
 	/// Get Left Upper Leg / Thigh
 	/// </summary>
 	public string LeftLowerLeg
-		=> Path.Combine(armatureBase, armatureRoot, armatureHip, armaturePelvis, armatureLeftUpperLeg, armatureRightLowerLeg)
+		=> Path.Combine(armatureBase, armatureRoot, armatureHip, armaturePelvis, armatureLeftUpperLeg, armatureLeftLowerLeg)
 		.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+
+	public string RightFoot
+		=> Path.Combine(armatureBase, armatureRoot, armatureHip, armaturePelvis, armatureRightUpperLeg, armatureRightLowerLeg, armatureRightFoot)
+		.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+
+	public string LeftFoot
+		=> Path.Combine(armatureBase, armatureRoot, armatureHip, armaturePelvis, armatureLeftUpperLeg, armatureLeftLowerLeg, armatureLeftFoot)
+		.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+
 }

@@ -16,11 +16,6 @@ MonoBehaviour:
   armatureBase: Human
   armatureRoot: Base_BoneRoot
   armatureHip: Base_Hip
-  armaturePelvis: Base_Pelvis
-  armatureRightUpperLeg: Base_R_Thigh
-  armatureLeftUpperLeg: Base_L_Thigh
-  armatureRightLowerLeg: Base_R_Calf
-  armatureLeftLowerLeg: Base_L_Calf
   armatureWaist: Base_Waist
   armatureSpine01: Base_Spine01
   armatureSpine02: Base_Spine02
@@ -30,3 +25,10 @@ MonoBehaviour:
   armatureLeftUpperArm: Base_L_Upperarm
   armatureRightLowerArm: Base_R_Forearm
   armatureLeftLowerArm: Base_L_Forearm
+  armaturePelvis: Base_Pelvis
+  armatureRightUpperLeg: Base_R_Thigh
+  armatureLeftUpperLeg: Base_L_Thigh
+  armatureRightLowerLeg: Base_R_Calf
+  armatureLeftLowerLeg: Base_L_Calf
+  armatureRightFoot: Base_R_Foot
+  armatureLeftFoot: Base_L_Foot
