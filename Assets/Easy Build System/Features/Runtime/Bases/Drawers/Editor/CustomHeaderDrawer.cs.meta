@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 34371c4ca5e696c4f9b5acacc443bd73
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 45394
+  packageName: Easy Build System
+  packageVersion: 6.2.5
+  assetPath: Assets/Easy Build System/Features/Runtime/Bases/Drawers/Editor/CustomHeaderDrawer.cs
+  uploadId: 605066

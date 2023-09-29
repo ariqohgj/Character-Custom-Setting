@@ -1,27 +1,30 @@
 ﻿using UnityEngine;
 
-public class Singleton<Instance> : MonoBehaviour where Instance : Singleton<Instance>
+namespace Cinda.AlterLife.Singleton
 {
-    public static Instance instance;
-    [Header("Singleton Instance"), SerializeField, Tooltip("Dont destroy on load?")] private bool isPersistant;
-
-    public virtual void Awake()
+    public class Singleton<Instance> : MonoBehaviour where Instance : Singleton<Instance>
     {
-        if (isPersistant)
+        public static Instance instance;
+        [Header("Singleton Instance"), SerializeField, Tooltip("Dont destroy on load?")] private bool isPersistant;
+
+        public virtual void Awake()
         {
-            if (!instance)
+            if (isPersistant)
             {
-                instance = this as Instance;
-                DontDestroyOnLoad(gameObject);
+                if (!instance)
+                {
+                    instance = this as Instance;
+                    DontDestroyOnLoad(gameObject);
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
             }
             else
             {
-                Destroy(gameObject);
+                instance = this as Instance;
             }
-        }
-        else
-        {
-            instance = this as Instance;
         }
     }
 }

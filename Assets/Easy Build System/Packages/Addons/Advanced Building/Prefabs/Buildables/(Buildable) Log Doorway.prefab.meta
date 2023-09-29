@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 46672165da3d85f4486343d1aed1dcc6
+labels:
+- BuildingPart
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 45394
+  packageName: Easy Build System
+  packageVersion: 6.2.5
+  assetPath: Assets/Easy Build System/Packages/Addons/Advanced Building/Prefabs/Buildables/(Buildable)
+    Log Doorway.prefab
+  uploadId: 605066

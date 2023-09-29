@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9428ad7a3c1913442a117bacd419b2c5
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 45394
+  packageName: Easy Build System
+  packageVersion: 6.2.5
+  assetPath: Assets/Easy Build System/Packages/Demos/First Person Demoscene.unity
+  uploadId: 605066

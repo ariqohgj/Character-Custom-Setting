@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 45310e3b6dd99bc42a2f810124651746
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 45394
+  packageName: Easy Build System
+  packageVersion: 6.2.5
+  assetPath: Assets/Easy Build System/Packages/Addons/Horizontal Building Menu/Prefabs/UI
+    Horizontal Building Menu.prefab
+  uploadId: 605066

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c7bb99dfe9fa82745bd67330a0df6c17
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 45394
+  packageName: Easy Build System
+  packageVersion: 6.2.5
+  assetPath: Assets/Easy Build System/Features/Resources/Packages/Integrations/uSurvival
+    Integration.unitypackage
+  uploadId: 605066

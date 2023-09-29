@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: f5a65e97228535f4191c77db171afc94
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 45394
+  packageName: Easy Build System
+  packageVersion: 6.2.5
+  assetPath: Assets/Easy Build System/Features/Editor/Windows/IntegrationManager.cs
+  uploadId: 605066

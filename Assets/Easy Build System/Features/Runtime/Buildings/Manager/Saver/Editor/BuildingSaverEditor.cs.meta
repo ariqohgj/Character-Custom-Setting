@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: c0d655bb3dda0f84083e833784bbc41b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 45394
+  packageName: Easy Build System
+  packageVersion: 6.2.5
+  assetPath: Assets/Easy Build System/Features/Runtime/Buildings/Manager/Saver/Editor/BuildingSaverEditor.cs
+  uploadId: 605066

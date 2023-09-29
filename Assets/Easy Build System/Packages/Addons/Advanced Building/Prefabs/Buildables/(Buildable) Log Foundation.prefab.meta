@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c52ab45a230655747b13e6b0d806073e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 45394
+  packageName: Easy Build System
+  packageVersion: 6.2.5
+  assetPath: Assets/Easy Build System/Packages/Addons/Advanced Building/Prefabs/Buildables/(Buildable)
+    Log Foundation.prefab
+  uploadId: 605066

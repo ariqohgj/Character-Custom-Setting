@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: f4fad11c52c90f944a831c70f2b9ad12
+labels:
+- BuildingPart
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 45394
+  packageName: Easy Build System
+  packageVersion: 6.2.5
+  assetPath: Assets/Easy Build System/Packages/Addons/Advanced Building/Prefabs/Buildables/(Buildable)
+    Log Floor.prefab
+  uploadId: 605066

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 51a1483412b9668479fb4169738f559e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4300000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 45394
+  packageName: Easy Build System
+  packageVersion: 6.2.5
+  assetPath: Assets/Easy Build System/Packages/Addons/Wooden Modular Parts/Models/Fractured/Wooden
+    Door_frags.asset
+  uploadId: 605066

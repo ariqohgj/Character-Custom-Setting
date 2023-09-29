@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 032b2c8e844fd9e4c903991ca25b8528
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 45394
+  packageName: Easy Build System
+  packageVersion: 6.2.5
+  assetPath: Assets/Easy Build System/Features/Runtime/Buildings/Placer/InputHandler/Editor/GamepadInputHandlerEditor.cs
+  uploadId: 605066

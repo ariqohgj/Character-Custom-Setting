@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 20778a4a79fa6a54f9e61409e5e3461c
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 45394
+  packageName: Easy Build System
+  packageVersion: 6.2.5
+  assetPath: Assets/Easy Build System/Packages/Demos/Unity Terrain Demoscene.unity
+  uploadId: 605066
