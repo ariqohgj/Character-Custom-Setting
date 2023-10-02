@@ -311,5 +311,10 @@ namespace Cinda.AlterLife
                 //isRotating = false;
             }
         }
+
+        public void exit()
+        {
+            Application.Quit();
+        }
     }
 }
