@@ -17,6 +17,7 @@ namespace EasyBuildSystem.Examples.Bases.Scripts.UI.Mobile
         [SerializeField] GameObject m_UIValidateButton;
         [SerializeField] GameObject m_UIRotateButton;
         [SerializeField] GameObject m_UICancelButton;
+        [SerializeField] Demo_InputHandler demo_InputHandler;
 
         AndroidInputHandler m_AndroidInputHandler;
 
@@ -50,17 +51,17 @@ namespace EasyBuildSystem.Examples.Bases.Scripts.UI.Mobile
 
         public void VirtualMoveInput(Vector2 virtualMoveDirection)
         {
-            Demo_InputHandler.Instance.MoveInput(virtualMoveDirection);
+            demo_InputHandler.MoveInput(virtualMoveDirection);
         }
 
         public void VirtualLookInput(Vector2 virtualLookDirection)
         {
-            Demo_InputHandler.Instance.LookInput(virtualLookDirection);
+            demo_InputHandler.LookInput(virtualLookDirection);
         }
 
         public void VirtualJumpInput(bool virtualJumpState)
         {
-            Demo_InputHandler.Instance.JumpInput(virtualJumpState);
+            demo_InputHandler.JumpInput(virtualJumpState);
         }
 
         public void VirtualValidateBuildingAction()

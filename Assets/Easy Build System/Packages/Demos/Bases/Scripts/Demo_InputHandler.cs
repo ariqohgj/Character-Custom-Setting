@@ -8,6 +8,7 @@
 using UnityEngine;
 
 using EasyBuildSystem.Features.Runtime.Bases;
+using EasyBuildSystem.Features.Runtime.Buildings.Placer.InputHandler;
 #if EBS_INPUT_SYSTEM_SUPPORT
 using UnityEngine.InputSystem;
 #endif
@@ -104,33 +105,50 @@ namespace EasyBuildSystem.Examples.Bases.Scripts
 
 	public bool Sprint { get; set; }
 
-	void Update()
-	{
-		MoveInput(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
-		LookInput(new Vector2(Input.GetAxis("Mouse X"), -Input.GetAxis("Mouse Y")));
-		JumpInput(Input.GetButton("Jump"));
+	private bool _androidInput;
 
+
+	private void Awake()
+    {
+		_androidInput = gameObject.TryGetComponent<AndroidInputHandler>(out AndroidInputHandler androidInputHandler);
+    }
+
+    void Update()
+	{
+        if (!_androidInput)
+        {
+			MoveInput(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
+			LookInput(new Vector2(Input.GetAxis("Mouse X"), -Input.GetAxis("Mouse Y")));
+			JumpInput(Input.GetButton("Jump"));
+		}
+		
 		Sprint = true;
 	}
 
 	public void MoveInput(Vector2 newMoveDirection)
 	{
-        if (Cursor.lockState == CursorLockMode.None)
+		if (!_androidInput)
         {
-            Move = Vector2.zero;
-            return;
-        }
+			if (Cursor.lockState == CursorLockMode.None)
+			{
+				Move = Vector2.zero;
+				return;
+			}
+		}
 
         Move = newMoveDirection;
 	}
 
 	public void LookInput(Vector2 newLookDirection)
 	{
-        if (Cursor.lockState == CursorLockMode.None)
+        if (!_androidInput)
         {
-            Look = Vector2.zero;
-            return;
-        }
+			if (Cursor.lockState == CursorLockMode.None)
+			{
+				Look = Vector2.zero;
+				return;
+			}
+		}
 
         Look = newLookDirection;
 	}
