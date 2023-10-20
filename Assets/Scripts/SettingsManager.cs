@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Cinemachine;
 using Unity.VisualScripting;
+using static Opsive.UltimateCharacterController.Character.CharacterFootEffects;
 
 namespace Cinda.AlterLife
 {
@@ -20,12 +21,15 @@ namespace Cinda.AlterLife
         public ItemSliderData itemSliderData;
         public RectTransform parent;
 
-        public float rotationSpeed = 2.0f;
+        public float rotationSpeed = 500f;
         private Vector3 lastMousePosition;
         public GameObject parentSkin;
         public bool isRotating = false;
         private List<ItemSliderData> listData = new List<ItemSliderData>();
         public EventSystem ehe;
+
+        private Quaternion FrontRotation = Quaternion.Euler(0, 180, 0);
+        private Quaternion BackRotation = Quaternion.Euler(0, 70, 0);
 
         // Start is called before the first frame update
 
@@ -33,6 +37,7 @@ namespace Cinda.AlterLife
         public CinemachineVirtualCamera CAM_1;
         public CinemachineVirtualCamera CAM_2;
         public CinemachineVirtualCamera CAM_3;
+        public CinemachineVirtualCamera CAM_4;
 
         [Header("SCALER")]
         public GameObject scalerObj;
@@ -69,8 +74,7 @@ namespace Cinda.AlterLife
         public class minmaxData
         {
             [Header("CATEGORY")]
-            public category CATEGORY_SETTING;
-
+            public category Category;
             [Header("DATA")]
             public string shpekey;
             public int id;
@@ -78,6 +82,7 @@ namespace Cinda.AlterLife
             public float max;
             public bool shapeSulit = false;
             public bool withCloth = false;
+            public bool notInclude = false;
             public List<float> defaultValue = new();
             public List<BarrierData> barrierDatas = new List<BarrierData>();
         }
@@ -126,6 +131,8 @@ namespace Cinda.AlterLife
                     if (hit.collider.gameObject == parentSkin.gameObject)
                     {
                         isRotating = true;
+                        if (routineRotate != null)
+                            StopCoroutine(routineRotate);
                         lastMousePosition = Input.mousePosition;
                     }
                 }
@@ -168,7 +175,7 @@ namespace Cinda.AlterLife
                 {
                     ItemSliderData data = Instantiate(itemSliderData, parent);
                     data.id_data_one = skinnedMesh.sharedMesh.GetBlendShapeIndex(skinnedMesh.sharedMesh.GetBlendShapeName(i));
-                    data.nameText.text = skinnedMesh.sharedMesh.GetBlendShapeName(i);
+                    data.nameText.text = DataMinAndMax[i].shpekey;
                     data.min = DataMinAndMax[i].min;
                     data.max = DataMinAndMax[i].max;
 
@@ -176,10 +183,9 @@ namespace Cinda.AlterLife
                     //data.inputValue.text = skinnedMesh.GetBlendShapeWeight(i).ToString();
                     data.slider.onValueChanged.AddListener(data.ChangeValueBySlider);
                     data.gameObject.SetActive(true);
-                    data.sliderType = (ItemSliderData.SliderType)DataMinAndMax[i].CATEGORY_SETTING;
-                    data.slider.onValueChanged.AddListener(data.ChangeValueBySlider);
+                    data.sliderType = (ItemSliderData.SliderType)DataMinAndMax[i].Category;
 
-                    if (i == 1 || i == 2 || i ==9)
+                    if (i == 1 || i == 2 || i == 9)
                     {
                         data.gameObject.SetActive(false);
                         continue;
@@ -206,7 +212,7 @@ namespace Cinda.AlterLife
                     }
                     else
                     {
-   
+
                         data.slider.value = skinnedMesh.GetBlendShapeWeight(i);
                     }
 
@@ -245,57 +251,63 @@ namespace Cinda.AlterLife
                         }
                     }
 
+                    if (DataMinAndMax[i].notInclude)
+                    {
+                        data.gameObject.SetActive(false);
+
+                    }
+
                     listData.Add(data);
+                    Setting_Normal();
                 }
             }
         }
 
         public void Setting_Upper()
         {
-            for (int i = 0; i < listData.Count; i++)
-            {
-                listData[i].gameObject.SetActive(true);
-                if (listData[i].sliderType != ItemSliderData.SliderType.Upper)
-                {
-                    listData[i].gameObject.SetActive(false);
-                }
-            }
-            CAM_1.Priority = 10;
-            CAM_2.Priority = 11;
-            CAM_3.Priority = 10;
+
+            StartRotate(true);
         }
 
         public void Setting_Lower()
         {
-            for (int i = 0; i < listData.Count; i++)
-            {
-                listData[i].gameObject.SetActive(true);
-                if (listData[i].sliderType != ItemSliderData.SliderType.Lower)
-                {
-                    listData[i].gameObject.SetActive(false);
-                }
 
-            }
-            CAM_1.Priority = 10;
-            CAM_2.Priority = 10;
-            CAM_3.Priority = 11;
-
+            StartRotate(true);
         }
 
         public void Setting_None()
         {
-            for (int i = 0; i < listData.Count; i++)
+
+            StartRotate(false);
+        }
+
+        public void Setting_Normal()
+        {
+            //parentSkin.transform.rotation = Quaternion.Euler(0, 180, 0);
+            StartRotate(true);
+        }
+
+        Coroutine routineRotate;
+        void StartRotate(bool front)
+        {
+            if (routineRotate != null)
+                StopCoroutine(routineRotate);
+
+            routineRotate = StartCoroutine(FrontSide(front));
+        }
+        IEnumerator FrontSide(bool front)
+        {
+            float step = rotationSpeed;
+
+            float targetRotationY = (front) ? FrontRotation.y : BackRotation.y;
+            while (parentSkin.transform.localRotation.y != targetRotationY)
             {
-                listData[i].gameObject.SetActive(true);
-                if (listData[i].sliderType != ItemSliderData.SliderType.None)
-                {
-                    listData[i].gameObject.SetActive(false);
-                }
+
+                parentSkin.transform.localRotation = Quaternion.RotateTowards(parentSkin.transform.rotation, (front) ? FrontRotation : BackRotation, step);
+                yield return new WaitForSeconds(Time.deltaTime);
             }
 
-            CAM_1.Priority = 11;
-            CAM_2.Priority = 10;
-            CAM_3.Priority = 10;
+            parentSkin.transform.localRotation = (front) ? FrontRotation : BackRotation;
         }
 
         public void HideUnhideScaler()

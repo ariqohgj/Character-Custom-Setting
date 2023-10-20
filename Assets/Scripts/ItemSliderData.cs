@@ -56,6 +56,18 @@ namespace Cinda.AlterLife
             float valuebaru = value;
             SettingsManager.instance.isRotating = false;
             //inputValue.text = valuebaru.ToString("0.0");
+            switch (sliderType)
+            {
+                case ItemSliderData.SliderType.Upper:
+                    SettingsManager.instance.Setting_Upper();
+                    break;
+                case ItemSliderData.SliderType.Lower:
+                    SettingsManager.instance.Setting_Lower();
+                    break;
+                case ItemSliderData.SliderType.None: 
+                    SettingsManager.instance.Setting_None(); 
+                    break;
+            }
         }
 
         public void ChangeValueBySliderSulit(float value)
